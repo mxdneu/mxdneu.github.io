@@ -1,0 +1,925 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="一、document.getElementById()    根据Id获取元素节点&amp;lt;div id=&amp;quot;div1&amp;quot;&amp;gt;     &amp;lt;p id=&amp;quot;p1&amp;quot;&amp;gt;         我是第一个P&amp;lt;/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript的dom操作">
+<meta property="og:url" content="http://yoursite.com/2016/09/10/JavaScript的dom操作/index.html">
+<meta property="og:site_name" content="Mxdneu">
+<meta property="og:description" content="一、document.getElementById()    根据Id获取元素节点&amp;lt;div id=&amp;quot;div1&amp;quot;&amp;gt;     &amp;lt;p id=&amp;quot;p1&amp;quot;&amp;gt;         我是第一个P&amp;lt;/p&amp;gt;     &amp;lt;p id=&amp;quot;p2&amp;quot;&amp;gt;         我是第二个P&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2016-09-20T15:14:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript的dom操作">
+<meta name="twitter:description" content="一、document.getElementById()    根据Id获取元素节点&amp;lt;div id=&amp;quot;div1&amp;quot;&amp;gt;     &amp;lt;p id=&amp;quot;p1&amp;quot;&amp;gt;         我是第一个P&amp;lt;/p&amp;gt;     &amp;lt;p id=&amp;quot;p2&amp;quot;&amp;gt;         我是第二个P&amp;lt;/p&amp;gt; &amp;lt;/div&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> JavaScript的dom操作 | Mxdneu </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mxdneu</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                JavaScript的dom操作
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-10T20:57:17+08:00" content="2016-09-10">
+              2016-09-10
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="一、document-getElementById-根据Id获取元素节点"><a href="#一、document-getElementById-根据Id获取元素节点" class="headerlink" title="一、document.getElementById()    根据Id获取元素节点"></a>一、document.getElementById()    根据Id获取元素节点</h3><pre><code>&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;
+        我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot;&gt;
+        我是第二个P&lt;/p&gt;
+&lt;/div&gt;
+
+window.onload = function () {
+        var str = document.getElementById(&quot;p1&quot;).innerHTML;
+        alert(str);        //弹出    我是第一个P
+    }
+</code></pre><a id="more"></a>
+<h3 id="二、document-getElementsByName-根据name获取元素节点"><a href="#二、document-getElementsByName-根据name获取元素节点" class="headerlink" title="二、document.getElementsByName()    根据name获取元素节点"></a>二、document.getElementsByName()    根据name获取元素节点</h3><pre><code>&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;
+        我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot;&gt;
+        我是第二个P&lt;/p&gt;
+    &lt;input type=&quot;text&quot; value=&quot;请输入值&quot; name=&quot;userName&quot; /&gt;
+    &lt;input type=&quot;button&quot; value=&quot;确定&quot; onclick=&quot;fun1()&quot;&gt;
+&lt;/div&gt;
+
+    function fun1() {
+        var username = document.getElementsByName(&quot;userName&quot;)[0].value;
+        alert(username);    //输出userName里输入的值
+    }
+</code></pre><h3 id="三、document-getElementsByTagName-根据HTML标签名获取元素节点，注意getElements-的选择器返回的是一个NodeList对象，能根据索引号选择其中1个，可以遍历输出。"><a href="#三、document-getElementsByTagName-根据HTML标签名获取元素节点，注意getElements-的选择器返回的是一个NodeList对象，能根据索引号选择其中1个，可以遍历输出。" class="headerlink" title="三、document.getElementsByTagName()    根据HTML标签名获取元素节点，注意getElements*的选择器返回的是一个NodeList对象，能根据索引号选择其中1个，可以遍历输出。"></a>三、document.getElementsByTagName()    根据HTML标签名获取元素节点，注意getElements<em>*</em>的选择器返回的是一个NodeList对象，能根据索引号选择其中1个，可以遍历输出。</h3><pre><code>&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;
+        我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot;&gt;
+        我是第二个P&lt;/p&gt;
+&lt;/div&gt;
+
+window.onload = function () {
+        var str = document.getElementsByTagName(&quot;p&quot;)[1].innerHTML;
+        alert(str);        //输出  我是第二个P，因为获取的是索引为1的P，索引从0开始
+    }    
+
+window.onload = function () {
+        var arr = document.getElementsByTagName(&quot;p&quot;);
+        for (var i = 0; i &lt; arr.length; i++) {
+            alert(arr[i].innerHTML);
+        }
+    }
+
+window.onload = function () {
+        var node = document.getElementById(&quot;div1&quot;);
+     var node1 = document.getElementsByTagName(&quot;p&quot;)[1];    //从获取到的元素再获取
+        alert(node1.innerHTML);
+}
+</code></pre><h3 id="四、document-getElementsByClassName-根据class获取元素节点"><a href="#四、document-getElementsByClassName-根据class获取元素节点" class="headerlink" title="四、document.getElementsByClassName()    根据class获取元素节点"></a>四、document.getElementsByClassName()    根据class获取元素节点</h3><pre><code>div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt;
+        我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot;&gt;
+        我是第二个P&lt;/p&gt;
+&lt;/div&gt;
+
+window.onload = function () {
+        var node = document.getElementsByClassName(&quot;class1&quot;)[0];
+        alert(node.innerHTML);
+    }
+</code></pre><h3 id="五、javascript中的CSS选择器"><a href="#五、javascript中的CSS选择器" class="headerlink" title="五、javascript中的CSS选择器"></a>五、javascript中的CSS选择器</h3><pre><code>document.querySelector()    //根据CSS选择器的规则，返回第一个匹配到的元素
+document.querySelectorAll()    //根据CSS选择器的规则，返回所有匹配到的元素
+
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt;
+        我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot; class=&quot;class2&quot;&gt;
+        我是第二个P&lt;/p&gt;
+&lt;/div&gt;
+
+    window.onload = function () {
+        var node = document.querySelector(&quot;#div1 &gt; p&quot;);    
+        alert(node.innerHTML);                //输出  我是第一个P
+
+        var node1 = document.querySelector(&quot;.class2&quot;);
+        alert(node1.innerHTML);                //输出  我是第二个P
+
+        var nodelist = document.querySelectorAll(&quot;p&quot;);
+        alert(nodelist[0].innerHTML + &quot; - &quot; + nodelist[1].innerHTML);    //输出  我是第一个P - 我是第二个P
+    }
+</code></pre><h3 id="六、文档结构和遍历"><a href="#六、文档结构和遍历" class="headerlink" title="六、文档结构和遍历"></a>六、文档结构和遍历</h3><ul>
+<li><p>作为节点数的文档</p>
+<ul>
+<li><p>parentNode    获取该节点的父节点 </p>
+</li>
+<li><p>childNodes    获取该节点的子节点数组</p>
+</li>
+<li><p>firstChild    获取该节点的第一个子节点</p>
+</li>
+<li><p>lastChild    获取该节点的最后一个子节点</p>
+</li>
+<li><p>nextSibling    获取该节点的下一个兄弟元素</p>
+</li>
+<li><p>previoursSibling    获取该节点的上一个兄弟元素</p>
+</li>
+<li><p>nodeType    节点的类型，9代表Document节点，1代表Element节点，3代表Text节点，8代表Comment节点，11代表DocumentFragment节点</p>
+</li>
+<li><p>nodeVlue    Text节点或Comment节点的文本内容</p>
+</li>
+<li><p>nodeName    元素的标签名(如P,SPAN,#text(文本节点),DIV)，以大写形式表示</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>注意，以上6个方法连元素节点也算一个节点。</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt;
+                我是第一个P&lt;/p&gt;
+        &lt;p id=&quot;p2&quot; class=&quot;class2&quot;&gt;
+                我是第二个P&lt;/p&gt;
+    &lt;/div&gt;
+
+ window.onload = function () {
+        var node1 = document.querySelector(&quot;.class2&quot;);
+        alert(node1.parentNode.innerHTML); //输出  &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt;我是第一个P&lt;/p&gt;&lt;p id=&quot;p2&quot; class=&quot;class2&quot;&gt;我是第二个P&lt;/p&gt;
+
+        var nodelist = document.getElementById(&quot;div1&quot;);
+        var arr = nodelist.childNodes;
+        alert(arr[1].innerHTML + &quot; - &quot; + arr[3].innerHTML); //输出    我是第一个P - 我是第二个P 为什么是1，3呢？因为本方法文本节点也会获取，也就是说0,2,4是文本节点
+    }
+
+&lt;div id=&quot;div1&quot;&gt;
+        文本1
+        &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt;
+            我是第一个P&lt;/p&gt;
+        文本2
+        &lt;p id=&quot;p2&quot; class=&quot;class2&quot;&gt;
+            我是第二个P&lt;/p&gt;
+        文本3
+    &lt;/div&gt;
+
+window.onload = function () {        //依次输出，文本1，我是第一个P，文本2，我是第二个P，文本3
+        var node = document.getElementById(&quot;div1&quot;);
+        for (var i = 0; i &lt; node.childNodes.length; i++) {
+            if (node.childNodes[i].nodeType == 1) {
+                alert(node.childNodes[i].innerHTML);
+            }
+            else if (node.childNodes[i].nodeType == 3) {
+                alert(node.childNodes[i].nodeValue);
+            }
+        }
+    }
+</code></pre><ul>
+<li><p>作为元素树的文档</p>
+<ul>
+<li>firstElementChild        第一个子元素节点</li>
+<li>lastElementChild        最后一个子元素节点</li>
+<li>nextElementSibling        下一个兄弟元素节点</li>
+<li>previousElementSibling    前一个兄弟元素节点</li>
+<li><p>childElementCount        子元素节点个数量<br>注意，此5个方法文本节点不算进去</p>
+<pre><code> &lt;div id=&quot;div1&quot;&gt;
+         &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt;
+            我是第一个P&lt;/p&gt;
+        &lt;p id=&quot;p2&quot; class=&quot;class2&quot;&gt;
+            我是第二个P&lt;/p&gt;
+  &lt;/div&gt;
+
+window.onload = function () {
+var node = document.getElementById(&quot;div1&quot;);
+var node1 = node.firstElementChild;
+var node2 = node.lastElementChild;
+
+alert(node.childElementCount);  //输出2，div1一共有两个非文档子元素节点
+alert(node1.innerHTML);         //输出 我是第一个P
+alert(node2.innerHTML);         //输出 我是第二个P
+alert(node2.previousElementSibling.innerHTML);  //输出 我是第一个P(第二个元素节点的上一个非文本元素节点是P1)
+alert(node1.nextElementSibling.innerHTML);      //输出 我是第二个P(第一个元素节点的下一个兄弟非文本节点是P2)
+</code></pre><p>  }</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="七、javascript操作HTML属性"><a href="#七、javascript操作HTML属性" class="headerlink" title="七、javascript操作HTML属性"></a>七、javascript操作HTML属性</h3><ol>
+<li><p>属性的读取，此处要注意的是，某些HTML属性名称在javascript之中是保留字，因此会有些许不同，如class,lable中的for在javascript中变为htmlFor,className。</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot; class=&quot;class1&quot;&gt; 我是第一个P&lt;/p&gt;
+    &lt;img src=&quot;123.jpg&quot; alt=&quot;我是一张图片&quot; id=&quot;img1&quot; /&gt;
+    &lt;input type=&quot;text&quot; value=&quot;我是一个文本框&quot; id=&quot;input1&quot; /&gt;
+&lt;/div&gt;
+
+window.onload = function () {
+    var nodeText = document.getElementById(&quot;input1&quot;);
+    alert(nodeText.value);        //输出 我是一个文本框
+    var nodeImg = document.getElementById(&quot;img1&quot;);
+    alert(nodeImg.alt);            //输出 我是一张图片
+    var nodeP = document.getElementById(&quot;p1&quot;);
+    alert(nodeP.className);        //输出 class1    注意获取class是className，如果写成nodeP.class则输出undefined
+}
+</code></pre></li>
+<li><p>属性的设置，此处同样要注意的是保留字</p>
+<pre><code> &lt;div id=&quot;div1&quot;&gt;
+    &lt;img src=&quot;1big.jpg&quot; alt=&quot;我是一张图片&quot; id=&quot;img1&quot; onclick=&quot;fun1()&quot; /&gt;
+&lt;/div&gt;
+
+function fun1() {
+    document.getElementById(&quot;img1&quot;).src = &quot;1small.jpg&quot;;        //改变图片的路径属性。实现的效果为，当点击图片时，大图变小图。
+}
+</code></pre></li>
+<li><p>非标准HTML属性</p>
+<pre><code>getAttribute();    //注意这两个方法是不必理会javascript保留字的，HTML属性是什么就怎么写。
+setAttribute();
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;img src=&quot;1big.jpg&quot; alt=&quot;我是一张图片&quot; class=&quot;imgClass&quot; id=&quot;img1&quot; onclick=&quot;fun1()&quot;/&gt;
+&lt;/div&gt;
+
+function fun1() {
+    document.getElementById(&quot;img1&quot;).setAttribute(&quot;src&quot;, &quot;1small.jpg&quot;);
+    alert(document.getElementById(&quot;img1&quot;).getAttribute(&quot;class&quot;));
+}
+</code></pre></li>
+<li><p>Attr节点的属性</p>
+</li>
+</ol>
+<p>attributes属性  非Element对象返回null，Element一半返回Attr对象。Attr对象是一个特殊的Node,通过name与value获取属性名称与值。<br>如:document.getElementById(“img1”)[0];<br>document.getElementById(“img1”).src;</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+        &lt;img src=&quot;1big.jpg&quot; alt=&quot;我是一张图片&quot; class=&quot;imgClass&quot; id=&quot;img1&quot; onclick=&quot;fun1()&quot; /&gt;
+    &lt;/div&gt;
+
+function fun1() {
+        alert(document.getElementById(&quot;img1&quot;).attributes[0].name);    //输出  onclick    注意，通过索引器访问是写在右面在排前面，从0开始
+        alert(document.getElementById(&quot;img1&quot;).attributes.src.value);    //输出1big.jpg
+        document.getElementById(&quot;img1&quot;).attributes.src.value = &quot;1small.jpg&quot;;    //点击后改变src属性，实现了点击大图变小图效果
+    }
+</code></pre><h3 id="八、元素的内容"><a href="#八、元素的内容" class="headerlink" title="八、元素的内容"></a>八、元素的内容</h3><ol>
+<li>innerText、textContent    innerText与textContent的区别，当文本为空时，innerText是””，而textContent是undefined</li>
+<li><p>innerHTML</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;我是第&lt;b&gt;二&lt;/b&gt;个P&lt;/p&gt;
+    &lt;/div&gt;
+
+window.onload = function () {
+        alert(document.getElementById(&quot;p1&quot;).innerText);  //注意火狐浏览器不支持innerText
+        alert(document.getElementById(&quot;p1&quot;).textContent);    //基本都支持textContent
+        document.getElementById(&quot;p1&quot;).textContent = &quot;我是p1，javascript改变了我&quot;;    //设置文档Text
+        alert(document.getElementById(&quot;p2&quot;).textContent);
+        alert(document.getElementById(&quot;p2&quot;).innerHTML); //innerHTML与innerText的区别，就是对HTML代码的输出方式Text不会输出HTML代码
+    }
+</code></pre></li>
+</ol>
+<h3 id="九、创建，插入，删除节点"><a href="#九、创建，插入，删除节点" class="headerlink" title="九、创建，插入，删除节点"></a>九、创建，插入，删除节点</h3><ol>
+<li><p>document.createTextNode()    创建一个文本节点</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;我是第二个P&lt;/p&gt;
+    &lt;/div&gt;
+
+window.onload = function () {
+        var textNode = document.createTextNode(&quot;&lt;p&gt;我是一个javascript新建的节点&lt;/p&gt;&quot;);
+        document.getElementById(&quot;div1&quot;).appendChild(textNode);
+    }
+
+完成后HTML变为：
+div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot;&gt;我是第二个P&lt;/p&gt;
+    我是一个javascript新建的节点
+&lt;/div&gt;
+</code></pre></li>
+<li><p>document.createElement()    创建一个元素节点</p>
+<pre><code> &lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;我是第二个P&lt;/p&gt;
+    &lt;/div&gt;
+
+window.onload = function () {
+        var pNode = document.createElement(&quot;p&quot;);
+        pNode.textContent = &quot;新建一个P节点&quot;;
+        document.getElementById(&quot;div1&quot;).appendChild(pNode);
+    }
+
+ 执行之后HTML代码变为：
+
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+    &lt;p id=&quot;p2&quot;&gt;我是第二个P&lt;/p&gt;
+    &lt;p&gt;新建一个P节点&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></li>
+<li><p>插入节点</p>
+<pre><code>appendChild()    //将一个节点插入到调用节点的最后面
+insertBefore()    //接受两个参数，第一个为待插入的节点，第二个指明在哪个节点前面，如果不传入第二个参数，则跟appendChild一样，放在最后。
+ &lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+    &lt;/div&gt;
+
+window.onload = function () {
+        var pNode1 = document.createElement(&quot;p&quot;);
+        pNode1.textContent = &quot;insertBefore插入的节点&quot;;
+        var pNode2 = document.createElement(&quot;p&quot;);
+        pNode2.textContent = &quot;appendChild插入的节点&quot;;
+        document.getElementById(&quot;div1&quot;).appendChild(pNode2);
+        document.getElementById(&quot;div1&quot;).insertBefore(pNode1,document.getElementById(&quot;p1&quot;));
+    }
+执行之后HTML代码为：
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;p&gt;insertBefore插入的节点&lt;/p&gt;
+    &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+    &lt;p&gt;appendChild插入的节点&lt;/p&gt;
+&lt;/div&gt;
+</code></pre></li>
+</ol>
+<h3 id="十、删除和替换节点。"><a href="#十、删除和替换节点。" class="headerlink" title="十、删除和替换节点。"></a>十、删除和替换节点。</h3><ol>
+<li><p>removeChild();    由父元素调用，删除一个子节点。注意是直接父元素调用，删除直接子元素才有效，删除孙子元素就没有效果了。</p>
+<pre><code>&lt;div id=&quot;div1&quot;&gt;
+        &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+        &lt;p id=&quot;p2&quot;&gt;我是第二个P&lt;/p&gt;
+    &lt;/div&gt;
+
+window.onload = function () {
+        var div1 = document.getElementById(&quot;div1&quot;);
+        div1.removeChild(document.getElementById(&quot;p2&quot;));
+    }
+执行之后代码变为：
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;    //注意到第二个P元素已经被移除了
+&lt;/div&gt;
+</code></pre></li>
+<li><p>replaceChild()    //删除一个子节点，并用一个新节点代替它，第一个参数为新建的节点，第二个节点为被替换的节点</p>
+<pre><code>  &lt;div id=&quot;div1&quot;&gt;
+            &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+            &lt;p id=&quot;p2&quot;&gt;我是第二个P&lt;/p&gt;
+        &lt;/div&gt;
+
+    window.onload = function () {
+            var div1 = document.getElementById(&quot;div1&quot;);
+            var span1 = document.createElement(&quot;span&quot;);
+            span1.textContent = &quot;我是一个新建的span&quot;;
+            div1.replaceChild(span1,document.getElementById(&quot;p2&quot;));
+        }
+
+执行完成后HTML代码变为：
+&lt;div id=&quot;div1&quot;&gt;
+    &lt;p id=&quot;p1&quot;&gt;我是第一个P&lt;/p&gt;
+    &lt;span&gt;我是一个新建的span&lt;/span&gt;    //留意到p2节点已经被替换为span1节点了
+&lt;/div&gt;
+</code></pre></li>
+</ol>
+<h3 id="十一、javascript操作元素CSS"><a href="#十一、javascript操作元素CSS" class="headerlink" title="十一、javascript操作元素CSS"></a>十一、javascript操作元素CSS</h3><p>通过元素的style属性可以随意读取和设置元素的CSS样式，例子：</p>
+<pre><code>&lt;head&gt;
+    &lt;title&gt;&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        window.onload = function () {
+            alert(document.getElementById(&quot;div1&quot;).style.backgroundColor);
+            document.getElementById(&quot;div1&quot;).style.backgroundColor = &quot;yellow&quot;;
+        }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;div1&quot; style=&quot;width:100px; height:100px; background-color:red&quot;&gt;&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/22/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/16/css总结/" rel="prev" title="CSS总结">
+                CSS总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww4.sinaimg.cn/mw690/6488577ejw1f46rubzkv7j20c808c0ua.jpg"
+               alt="马晓东" />
+          <p class="site-author-name" itemprop="name">马晓东</p>
+          <p class="site-description motion-element" itemprop="description">有一技之长，并保持不断向上的状态，才是真正的稳定</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、document-getElementById-根据Id获取元素节点"><span class="nav-number">1.</span> <span class="nav-text">一、document.getElementById()    根据Id获取元素节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、document-getElementsByName-根据name获取元素节点"><span class="nav-number">2.</span> <span class="nav-text">二、document.getElementsByName()    根据name获取元素节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、document-getElementsByTagName-根据HTML标签名获取元素节点，注意getElements-的选择器返回的是一个NodeList对象，能根据索引号选择其中1个，可以遍历输出。"><span class="nav-number">3.</span> <span class="nav-text">三、document.getElementsByTagName()    根据HTML标签名获取元素节点，注意getElements*的选择器返回的是一个NodeList对象，能根据索引号选择其中1个，可以遍历输出。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、document-getElementsByClassName-根据class获取元素节点"><span class="nav-number">4.</span> <span class="nav-text">四、document.getElementsByClassName()    根据class获取元素节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、javascript中的CSS选择器"><span class="nav-number">5.</span> <span class="nav-text">五、javascript中的CSS选择器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、文档结构和遍历"><span class="nav-number">6.</span> <span class="nav-text">六、文档结构和遍历</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、javascript操作HTML属性"><span class="nav-number">7.</span> <span class="nav-text">七、javascript操作HTML属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、元素的内容"><span class="nav-number">8.</span> <span class="nav-text">八、元素的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、创建，插入，删除节点"><span class="nav-number">9.</span> <span class="nav-text">九、创建，插入，删除节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十、删除和替换节点。"><span class="nav-number">10.</span> <span class="nav-text">十、删除和替换节点。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#十一、javascript操作元素CSS"><span class="nav-number">11.</span> <span class="nav-text">十一、javascript操作元素CSS</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马晓东</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
