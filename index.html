@@ -1191,7 +1191,7 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
               
                 
                 <a class="post-title-link" href="/2016/05/24/hexo-deploy/" itemprop="url">
-                  hexo deploy
+                  hexo使用踩坑
                 </a>
               
             
@@ -1258,6 +1258,11 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
 <ul>
 <li>删掉根目录下的文件夹：.deploy_git，重新deploy就可以了。</li>
 </ul>
+<p>hexo d后 ERROR Deployer not found: git</p>
+<ul>
+<li>$ hexo d<br>ERROR Deployer not found: git</li>
+</ul>
+<p>npm install –save hexo-deployer-git<br>即可。</p>
 
           
         
