@@ -1,0 +1,606 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="目标入口为http://www.cnblogs.com, 博客园文章列表页每页有20篇文章，最多可以翻到200页。异步去爬取4000篇文章的具体内容，拿到一些关键数据。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cnblog爬虫练习">
+<meta property="og:url" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/index.html">
+<meta property="og:site_name" content="Mxdneu">
+<meta property="og:description" content="目标入口为http://www.cnblogs.com, 博客园文章列表页每页有20篇文章，最多可以翻到200页。异步去爬取4000篇文章的具体内容，拿到一些关键数据。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/node爬虫列表页.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/node爬虫列表页.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/article.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/intoarticle.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/personalinfo.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/articleurl.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/articaltitle.jpg">
+<meta property="og:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/result.jpg">
+<meta property="og:updated_time" content="2017-11-26T06:54:21.821Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="cnblog爬虫练习">
+<meta name="twitter:description" content="目标入口为http://www.cnblogs.com, 博客园文章列表页每页有20篇文章，最多可以翻到200页。异步去爬取4000篇文章的具体内容，拿到一些关键数据。">
+<meta name="twitter:image" content="http://yoursite.com/2017/11/24/cnblog爬虫练习/node爬虫列表页.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> cnblog爬虫练习 | Mxdneu </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Mxdneu</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                cnblog爬虫练习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-24T18:05:14+08:00" content="2017-11-24">
+              2017-11-24
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">Nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h1><p>入口为<a href="http://www.cnblogs.com" target="_blank" rel="noopener">http://www.cnblogs.com</a>, 博客园文章列表页每页有20篇文章，最多可以翻到200页。异步去爬取4000篇文章的具体内容，拿到一些关键数据。<br><img src="/2017/11/24/cnblog爬虫练习/node爬虫列表页.jpg" alt="列表页"><br><a id="more"></a></p>
+<h1 id="爬虫流程"><a href="#爬虫流程" class="headerlink" title="爬虫流程"></a>爬虫流程</h1><h2 id="抓取"><a href="#抓取" class="headerlink" title="抓取"></a>抓取</h2><p>最重要的步骤就是如何把想要的页面抓取回来。并且能兼顾时间效率，能够并发的同时爬取多个页面。<br>同时，要获取目标内容，需要我们分析页面结构，因为 ajax 的盛行，许多页面内容并非是一个url就能请求的的回来的，通常一个页面的内容是经过多次请求异步生成的。所以这就要求我们能够利用抓包工具分析页面结构。<br>如果深入做下去，你会发现要面对不同的网页要求，比如有认证的，不同文件格式、编码处理，各种奇怪的url合规化处理、重复抓取问题、cookies 跟随问题、多线程多进程抓取、多节点抓取、抓取调度、资源压缩等一系列问题。<br>所以第一步就是拉网页回来，慢慢你会发现各种问题待你优化。</p>
+<h2 id="存储"><a href="#存储" class="headerlink" title="存储"></a>存储</h2><p>当把页面内容抓回来后，一般不会直接分析，而是用一定策略存下来，个人觉得更好的架构应该是把分析和抓取分离，更加松散，每个环节出了问题能够隔离另外一个环节可能出现的问题，好排查也好更新发布。<br>那么存文件系统、SQL or NOSQL 数据库、内存数据库，如何去存就是这个环节的重点。</p>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>对网页进行文本分析，提取链接也好，提取正文也好，总之看你的需求，但是一定要做的就是分析链接了。通常分析与存储会交替进行。可以用你认为最快最优的办法，比如正则表达式。然后将分析后的结果应用与其他环节。</p>
+<h2 id="展示"><a href="#展示" class="headerlink" title="展示"></a>展示</h2><p>更好的展示出来</p>
+<h1 id="编写爬虫代码"><a href="#编写爬虫代码" class="headerlink" title="编写爬虫代码"></a>编写爬虫代码</h1><h2 id="Step1-页面分析"><a href="#Step1-页面分析" class="headerlink" title="Step1 页面分析"></a>Step1 页面分析</h2><p>目标是爬取博客园第1页至第200页内的4000篇文章，获取其中的作者信息，并保存分析。<br><img src="/2017/11/24/cnblog爬虫练习/node爬虫列表页.jpg" alt="列表页"><br><img src="/2017/11/24/cnblog爬虫练习/article.jpg" alt="article"><br>共4000篇文章，所以首先我们要获得这个4000篇文章的入口，然后再异步并发的去请求4000篇文章的内容。但是这个4000篇文章的入口 URL 分布在200个页面中。所以我们要做的第一步是 从这个200个页面当中，提取出4000个 URL 。并且是通过异步并发的方式，当收集完4000个 URL 再进行下一步。</p>
+<h2 id="Step2-获取4000个文章入口URL"><a href="#Step2-获取4000个文章入口URL" class="headerlink" title="Step2     获取4000个文章入口URL"></a>Step2     获取4000个文章入口URL</h2><p><img src="/2017/11/24/cnblog爬虫练习/intoarticle.jpg" alt="intoarticle"><br>要获取这么多 URL ，首先还是得从分析单页面开始，F12 打开。很容易发现文章入口链接保存在 class 为 titlelnk 的 \<a> 标签中，所以4000个 URL 就需要我们轮询 200个列表页 ，将每页的20个 链接保存起来。</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">//一些依赖</span><br><span class="line">var http = require(&quot;http&quot;),</span><br><span class="line">    url = require(&quot;url&quot;),</span><br><span class="line">    superagent = require(&quot;superagent&quot;),</span><br><span class="line">    cheerio = require(&quot;cheerio&quot;),</span><br><span class="line">    async = require(&quot;async&quot;),</span><br><span class="line">    eventproxy = require(&apos;eventproxy&apos;);</span><br><span class="line"> </span><br><span class="line">var ep = new eventproxy(),</span><br><span class="line">    urlsArray = [], //存放爬取网址</span><br><span class="line">    pageUrls = [],  //存放收集文章页面网站</span><br><span class="line">    pageNum = 200;  //要爬取文章的页数</span><br><span class="line"> </span><br><span class="line">for(var i=1 ; i&lt;= 200 ; i++)&#123;</span><br><span class="line">    pageUrls.push(&apos;http://www.cnblogs.com/#p&apos;+i);</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line">// 主start程序</span><br><span class="line">function start()&#123;</span><br><span class="line">    function onRequest(req, res)&#123;  </span><br><span class="line">        // 轮询 所有文章列表页</span><br><span class="line">        pageUrls.forEach(function(pageUrl)&#123;</span><br><span class="line">            superagent.get(pageUrl)</span><br><span class="line">                .end(function(err,pres)&#123;</span><br><span class="line">              // pres.text 里面存储着请求返回的 html 内容，将它传给 cheerio.load 之后</span><br><span class="line">              // 就可以得到一个实现了 jquery 接口的变量，我们习惯性地将它命名为 `$`</span><br><span class="line">              // 剩下就都是利用$ 使用 jquery 的语法了</span><br><span class="line">              var $ = cheerio.load(pres.text);</span><br><span class="line">              var curPageUrls = $(&apos;.titlelnk&apos;);</span><br><span class="line"> </span><br><span class="line">              for(var i = 0 ; i &lt; curPageUrls.length ; i++)&#123;</span><br><span class="line">                var articleUrl = curPageUrls.eq(i).attr(&apos;href&apos;);</span><br><span class="line">                urlsArray.push(articleUrl);</span><br><span class="line">                // 相当于一个计数器</span><br><span class="line">                ep.emit(&apos;BlogArticleHtml&apos;, articleUrl);</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br><span class="line"> </span><br><span class="line">        ep.after(&apos;BlogArticleHtml&apos;, pageUrls.length*20 ,function(articleUrls)&#123;</span><br><span class="line">        // 当所有 &apos;BlogArticleHtml&apos; 事件完成后的回调触发下面事件</span><br><span class="line">        // ...</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    http.createServer(onRequest).listen(3000);</span><br><span class="line">&#125;</span><br><span class="line">exports.start= start;</span><br></pre></td></tr></table></figure>
+<p>这里我们用到了三个库，superagent 、 cheerio 、 eventproxy。<br>分别简单介绍一下：<br>superagent</p>
+<p>superagent(<a href="http://visionmedia.github.io/superagent/" target="_blank" rel="noopener">http://visionmedia.github.io/superagent/</a> ) 是个轻量的的 http 方面的库，是nodejs里一个非常方便的客户端请求代理模块，当我们需要进行 get 、 post 、 head 等网络请求时,可以尝试使用。</p>
+<p>cheerio</p>
+<p>cheerio(<a href="https://github.com/cheeriojs/cheerio" target="_blank" rel="noopener">https://github.com/cheeriojs/cheerio</a> ) 大家可以理解成一个 Node.js 版的 jquery，用来从网页中以 css selector 取数据，使用方式跟 jquery 一样一样的。</p>
+<p>eventproxy</p>
+<p>eventproxy(<a href="https://github.com/JacksonTian/eventproxy" target="_blank" rel="noopener">https://github.com/JacksonTian/eventproxy</a> ) 非常轻量的工具，但是能够带来一种事件式编程的思维变化。</p>
+<p>如果你要并发异步获取两三个地址的数据，并且要在获取到数据之后，对这些数据一起进行利用的话，常规的写法是自己维护一个计数器。</p>
+<p>先定义一个 var count = 0，然后每次抓取成功以后，就 count++。如果你是要抓取三个源的数据，由于你根本不知道这些异步操作到底谁先完成，那么每次当抓取成功的时候，就判断一下count === 3。当值为真时，使用另一个函数继续完成操作。</p>
+<p>而 eventproxy 就起到了这个计数器的作用，它来帮你管理到底这些异步操作是否完成，完成之后，它会自动调用你提供的处理函数，并将抓取到的数据当参数传过来。</p>
+<h2 id="Step3-爬取具体页面内容-使用-async-控制异步并发数量"><a href="#Step3-爬取具体页面内容-使用-async-控制异步并发数量" class="headerlink" title="Step3 爬取具体页面内容 使用 async 控制异步并发数量"></a>Step3 爬取具体页面内容 使用 async 控制异步并发数量</h2><p>获取到4000个 URL ，并且回调入口也有了，接下来我们只需要在回调函数里继续爬取4000个具体页面，并收集我们想要的信息就好了。其实刚刚我们已经经历了第一轮爬虫爬取，只是有一点做的不好的地方是我们刚刚并没有限制并发的数量，这也是我发现 cnblog 可以改善的一点，不然很容易被单IP的巨量 URL 请求攻击到崩溃。为了做一个好公民，也为了减轻网站的压力（其实为了不被封IP），这4000个URL 我限制了同时并发量最高为5。这里用到了另一个非常强大的库 async ，让我们控制并发量变得十分轻松，简单的介绍如下。</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a>async</h3><p>async(<a href="https://github.com/caolan/async#queueworker-concurrency)，async是一个流程控制工具包，提供了直接而强大的异步功能mapLimit(arr" target="_blank" rel="noopener">https://github.com/caolan/async#queueworker-concurrency)，async是一个流程控制工具包，提供了直接而强大的异步功能mapLimit(arr</a>, limit, iterator, callback)。</p>
+<p>这次我们要介绍的是 async 的 mapLimit(arr, limit, iterator, callback) 接口。另外，还有个常用的控制并发连接数的接口是 queue(worker, concurrency) ，大家可以去看看它的API。</p>
+<p>继续我们的爬虫，进到具体的文章页面，发现我们想获取的信息也不在直接请求而来的 html 页面中，而是如下这个 ajax 请求异步生成的，不过庆幸的是我们上一步收集的 URL 包含了这个请求所需要的参数，所以我们仅仅需要多做一层处理，将这个参数从 URL 中取出来再重新拼接成一个ajax URL 请求。<br><img src="/2017/11/24/cnblog爬虫练习/personalinfo.jpg" alt="intoarticle"><br>下面，贴出代码，在我们刚刚的回调函数中，继续我们4000个页面的爬取，并且控制并发数为5：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">ep.after(&apos;BlogArticleHtml&apos;,pageUrls.length*20,function(articleUrls)&#123;</span><br><span class="line">    // 当所有 &apos;BlogArticleHtml&apos; 事件完成后的回调触发下面事件</span><br><span class="line">    // 控制并发数</span><br><span class="line">    var curCount = 0;</span><br><span class="line">    var reptileMove = function(url,callback)&#123;</span><br><span class="line">        //延迟毫秒数</span><br><span class="line">        var delay = parseInt((Math.random() * 30000000) % 1000, 10);</span><br><span class="line">      curCount++;</span><br><span class="line">      console.log(&apos;现在的并发数是&apos;, curCount, &apos;，正在抓取的是&apos;, url, &apos;，耗时&apos; + delay + &apos;毫秒&apos;); </span><br><span class="line">     </span><br><span class="line">    superagent.get(url)</span><br><span class="line">        .end(function(err,sres)&#123;</span><br><span class="line">            // sres.text 里面存储着请求返回的 html 内容</span><br><span class="line">            var $ = cheerio.load(sres.text);</span><br><span class="line">            // 收集数据</span><br><span class="line">            // 拼接URL</span><br><span class="line">            var currentBlogApp = url.split(&apos;/p/&apos;)[0].split(&apos;/&apos;)[3],</span><br><span class="line">                appUrl = &quot;http://www.cnblogs.com/mvc/blog/news.aspx?blogApp=&quot;+ currentBlogApp;</span><br><span class="line">            // 具体收集函数</span><br><span class="line">            personInfo(appUrl);</span><br><span class="line">        &#125;);</span><br><span class="line"> </span><br><span class="line">    setTimeout(function() &#123;</span><br><span class="line">        curCount--;</span><br><span class="line">        callback(null,url +&apos;Call back content&apos;);</span><br><span class="line">    &#125;, delay);     </span><br><span class="line">    &#125;;</span><br><span class="line"> </span><br><span class="line">// 使用async控制异步抓取   </span><br><span class="line">// mapLimit(arr, limit, iterator, [callback])</span><br><span class="line">// 异步回调</span><br><span class="line">async.mapLimit(articleUrls, 5 ,function (url, callback) &#123;</span><br><span class="line">      reptileMove(url, callback);</span><br><span class="line">    &#125;, function (err,result) &#123;</span><br><span class="line">        // 4000 个 URL 访问完成的回调函数</span><br><span class="line">        // ...</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>根据重新拼接而来的 URL ，再写一个具体的 personInfo(URL) 函数，具体获取我们要的昵称、园龄、粉丝数等信息。</p>
+<p>这样，我们把抓取回来的信息以 JSON 串的形式存储在 catchDate 这个数组当中，</p>
+<p>node index.js 运行一下程序，将结果打印出来.</p>
+<p><img src="/2017/11/24/cnblog爬虫练习/articleurl.jpg" alt="intoarticle"><br><img src="/2017/11/24/cnblog爬虫练习/articaltitle.jpg" alt="intoarticle"><br><img src="/2017/11/24/cnblog爬虫练习/result.jpg" alt="intoarticle"></p>
+<p>至此，第三步就完成了，我们也收集到了4000条我们想要的原始数据。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/24/好久不见/" rel="next" title="long time test">
+                <i class="fa fa-chevron-left"></i> long time test
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="http://ww4.sinaimg.cn/mw690/6488577ejw1f46rubzkv7j20c808c0ua.jpg"
+               alt="马晓东" />
+          <p class="site-author-name" itemprop="name">马晓东</p>
+          <p class="site-description motion-element" itemprop="description">有一技之长，并保持不断向上的状态，才是真正的稳定</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#目标"><span class="nav-number">1.</span> <span class="nav-text">目标</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#爬虫流程"><span class="nav-number">2.</span> <span class="nav-text">爬虫流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#抓取"><span class="nav-number">2.1.</span> <span class="nav-text">抓取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#存储"><span class="nav-number">2.2.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分析"><span class="nav-number">2.3.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#展示"><span class="nav-number">2.4.</span> <span class="nav-text">展示</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写爬虫代码"><span class="nav-number">3.</span> <span class="nav-text">编写爬虫代码</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-页面分析"><span class="nav-number">3.1.</span> <span class="nav-text">Step1 页面分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-获取4000个文章入口URL"><span class="nav-number">3.2.</span> <span class="nav-text">Step2     获取4000个文章入口URL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step3-爬取具体页面内容-使用-async-控制异步并发数量"><span class="nav-number">3.3.</span> <span class="nav-text">Step3 爬取具体页面内容 使用 async 控制异步并发数量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#async"><span class="nav-number">3.3.1.</span> <span class="nav-text">async</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">马晓东</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+  
+
+  
+
+  
+
+</body>
+</html>
