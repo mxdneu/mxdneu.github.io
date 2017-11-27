@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="test">
+<meta name="description" content="清空input file的值今天在做选择本地图片上传的功能时遇到一个问题，第一次选择图片完成会触发onchange事件，获取文件后动态在界面上创建img标签展示，这个过程没有问题，问题出在当把创建的img元素节点删除后，再点file控件选中同一个文件后发现图片并没有被重新创建出来。分析了原因，是因为上一次file里选择">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2016/05/24/test/index.html">
+<meta property="og:title" content="input中的file属性">
+<meta property="og:url" content="http://yoursite.com/2017/11/27/input中的file属性/index.html">
 <meta property="og:site_name" content="Mxdneu">
-<meta property="og:description" content="test">
+<meta property="og:description" content="清空input file的值今天在做选择本地图片上传的功能时遇到一个问题，第一次选择图片完成会触发onchange事件，获取文件后动态在界面上创建img标签展示，这个过程没有问题，问题出在当把创建的img元素节点删除后，再点file控件选中同一个文件后发现图片并没有被重新创建出来。分析了原因，是因为上一次file里选择的文件路径值与本次选择的文件路径值是一样的，值没有改变所以导致file不会触发o">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-05-24T12:41:23.000Z">
+<meta property="og:updated_time" content="2017-11-27T05:25:32.701Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
-<meta name="twitter:description" content="test">
+<meta name="twitter:title" content="input中的file属性">
+<meta name="twitter:description" content="清空input file的值今天在做选择本地图片上传的功能时遇到一个问题，第一次选择图片完成会触发onchange事件，获取文件后动态在界面上创建img标签展示，这个过程没有问题，问题出在当把创建的img元素节点删除后，再点file控件选中同一个文件后发现图片并没有被重新创建出来。分析了原因，是因为上一次file里选择的文件路径值与本次选择的文件路径值是一样的，值没有改变所以导致file不会触发o">
 
 
 
@@ -112,7 +112,7 @@
   };
 </script>
 
-  <title> test | Mxdneu </title>
+  <title> input中的file属性 | Mxdneu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +242,7 @@
             
             
               
-                test
+                input中的file属性
               
             
           </h1>
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T20:41:23+08:00" content="2016-05-24">
-              2016-05-24
+            <time itemprop="dateCreated" datetime="2017-11-27T13:21:01+08:00" content="2017-11-27">
+              2017-11-27
             </time>
           </span>
 
@@ -268,8 +268,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/日志/" itemprop="url" rel="index">
-                    <span itemprop="name">日志</span>
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
                   </a>
                 </span>
 
@@ -301,8 +301,8 @@
       
 
       
-        <p>test</p>
-
+        <h1 id="清空input-file的值"><a href="#清空input-file的值" class="headerlink" title="清空input file的值"></a>清空input file的值</h1><p>今天在做选择本地图片上传的功能时遇到一个问题，第一次选择图片完成会触发onchange事件，获取文件后动态在界面上创建img标签展示，这个过程没有问题，问题出在当把创建的img元素节点删除后，再点file控件选中同一个文件后发现图片并没有被重新创建出来。<br>分析了原因，是因为上一次file里选择的文件路径值与本次选择的文件路径值是一样的，值没有改变所以导致file不会触发onchange事件。<br>解决这个问题的思路是每次创建完img后把file的路径值清空，但浏览器的安全机制规定不可以直接用js修改file的vaule，最后找到的方法是把file的html重新初始化来解决清空的问题。</p>
+<figure class="highlight plain"><figcaption><span>js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var file = doucment.getElementById(&apos;file&apos;);</span><br><span class="line">file.value = &apos;&apos;; //虽然file的value不能设为有字符的值，但是可以设置为空值</span><br><span class="line">//或者</span><br><span class="line">file.outerHTML = file.outerHTML; //重新初始化了file的html</span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -326,17 +326,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/19/firstar/" rel="next" title="新的开始">
-                <i class="fa fa-chevron-left"></i> 新的开始
+              <a href="/2017/11/24/cnblog爬虫练习/" rel="next" title="cnblog爬虫练习">
+                <i class="fa fa-chevron-left"></i> cnblog爬虫练习
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/24/hexo-deploy/" rel="prev" title="hexo使用踩坑">
-                hexo使用踩坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -443,7 +439,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#清空input-file的值"><span class="nav-number">1.</span> <span class="nav-text">清空input file的值</span></a></li></ol></div>
             
           </div>
         </section>

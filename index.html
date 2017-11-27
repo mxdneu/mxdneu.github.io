@@ -241,6 +241,119 @@
             
               
                 
+                <a class="post-title-link" href="/2017/11/27/input中的file属性/" itemprop="url">
+                  input中的file属性
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-11-27T13:21:01+08:00" content="2017-11-27">
+              2017-11-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/HTML/" itemprop="url" rel="index">
+                    <span itemprop="name">HTML</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="清空input-file的值"><a href="#清空input-file的值" class="headerlink" title="清空input file的值"></a>清空input file的值</h1><p>今天在做选择本地图片上传的功能时遇到一个问题，第一次选择图片完成会触发onchange事件，获取文件后动态在界面上创建img标签展示，这个过程没有问题，问题出在当把创建的img元素节点删除后，再点file控件选中同一个文件后发现图片并没有被重新创建出来。<br>分析了原因，是因为上一次file里选择的文件路径值与本次选择的文件路径值是一样的，值没有改变所以导致file不会触发onchange事件。<br>解决这个问题的思路是每次创建完img后把file的路径值清空，但浏览器的安全机制规定不可以直接用js修改file的vaule，最后找到的方法是把file的html重新初始化来解决清空的问题。</p>
+<figure class="highlight plain"><figcaption><span>js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var file = doucment.getElementById(&apos;file&apos;);</span><br><span class="line">file.value = &apos;&apos;; //虽然file的value不能设为有字符的值，但是可以设置为空值</span><br><span class="line">//或者</span><br><span class="line">file.outerHTML = file.outerHTML; //重新初始化了file的html</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/24/cnblog爬虫练习/" itemprop="url">
                   cnblog爬虫练习
                 </a>
@@ -1284,128 +1397,6 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/24/hexo-deploy/" itemprop="url">
-                  hexo使用踩坑
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T21:55:15+08:00" content="2016-05-24">
-              2016-05-24
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/日志/" itemprop="url" rel="index">
-                    <span itemprop="name">日志</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>找了很多资料，在deploy的时候不可以及时更新，先把问题放在这里，解决了再来回答</p>
-<p>遇到不能deploy成功是：</p>
-<ul>
-<li>删掉根目录下的文件夹：.deploy_git，重新deploy就可以了。</li>
-</ul>
-<p>hexo d后 ERROR Deployer not found: git</p>
-<ul>
-<li>$ hexo d<br>ERROR Deployer not found: git</li>
-</ul>
-<p>npm install –save hexo-deployer-git<br>即可。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1451,7 +1442,7 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-count">13</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1459,7 +1450,7 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
           
             <div class="site-state-item site-state-categories">
               
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">分类</span>
               
             </div>
