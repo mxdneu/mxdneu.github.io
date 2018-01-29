@@ -241,6 +241,245 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/25/爬虫学习/" itemprop="url">
+                  爬虫学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T20:57:17+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Nodejs/" itemprop="url" rel="index">
+                    <span itemprop="name">Nodejs</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="爬虫学习"><a href="#爬虫学习" class="headerlink" title="爬虫学习"></a>爬虫学习</h1><h2 id="爬虫系统及robots协议介绍"><a href="#爬虫系统及robots协议介绍" class="headerlink" title="爬虫系统及robots协议介绍"></a>爬虫系统及robots协议介绍</h2><p><em>爬虫</em>，是一种自动获取网页内容的程序。搜索引擎的重要组成部分，因此搜索引擎优化很大程度上就是针对爬虫做出优化。<br><em>robots.txt</em>是一个文本文件，robots.txt是一个协议，不是一个命令。robots.txt是爬虫要看的第一个文件。robots.txt文件告诉爬虫在服务器上什么文件是可以被查看的，搜索机器人就是会按照文件中的内容来确定访问范围。<br>爬虫得到的是html，转换成dom树。</p>
+<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
+<li>Express    //server模块<br>  Express的安装<br>  在git bash中输入<code>npm install -g express-generator</code></li>
+<li>Requst    //ajax方法。后端</li>
+<li>Cheerio //可以操作从服务端拉去回的数据</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/05/25/javascript中的this/" itemprop="url">
+                  javascript中的this
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-25T00:44:43+08:00" content="2016-05-25">
+              2016-05-25
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="详解JavaScript中的this"><a href="#详解JavaScript中的this" class="headerlink" title="详解JavaScript中的this"></a>详解JavaScript中的this</h1><p>JavaScript中的this总是让人迷惑，应该是js众所周知的坑之一。 个人也觉得js中的this不是一个好的设计，由于this晚绑定的特性，它可以是全局对象，当前对象，或者…有人甚至因为坑大而不用this。<br>其实如果完全掌握了this的工作原理，自然就不会走进这些坑。来看下以下这些情况中的this分别会指向什么：</p>
+<h2 id="1-全局代码中的this"><a href="#1-全局代码中的this" class="headerlink" title="1.全局代码中的this"></a>1.全局代码中的this</h2><p><code>alert(this)//window</code></p>
+<h2 id="2-作为单纯的函数调用"><a href="#2-作为单纯的函数调用" class="headerlink" title="2.作为单纯的函数调用"></a>2.作为单纯的函数调用</h2><p><code>function fooCoder(x) {
+    this.x = x;
+}
+fooCoder(2);
+alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即window。在严格模式中，则是undefined。<br></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/25/javascript中的this/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/24/hexo-deploy/" itemprop="url">
                   hexo使用踩坑
                 </a>
@@ -613,7 +852,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -660,7 +899,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

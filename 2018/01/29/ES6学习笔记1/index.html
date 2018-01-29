@@ -84,17 +84,17 @@
 
 
 
-<meta name="description" content="test">
+<meta name="description" content="ES6学习笔记函数的作用域一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。 var x = 1;  function f(x, y = x) {       console.log(y); ">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://yoursite.com/2016/05/24/test/index.html">
+<meta property="og:title" content="ES6学习笔记1">
+<meta property="og:url" content="http://yoursite.com/2018/01/29/ES6学习笔记1/index.html">
 <meta property="og:site_name" content="Mxdneu">
-<meta property="og:description" content="test">
+<meta property="og:description" content="ES6学习笔记函数的作用域一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。 var x = 1;  function f(x, y = x) {       console.log(y); }  f(2) // 2 上面代码中，参数y的默认值等于变量x。调用函数f时，参">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2016-05-24T12:41:23.000Z">
+<meta property="og:updated_time" content="2018-01-29T15:26:34.686Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="test">
-<meta name="twitter:description" content="test">
+<meta name="twitter:title" content="ES6学习笔记1">
+<meta name="twitter:description" content="ES6学习笔记函数的作用域一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。 var x = 1;  function f(x, y = x) {       console.log(y); }  f(2) // 2 上面代码中，参数y的默认值等于变量x。调用函数f时，参">
 
 
 
@@ -112,7 +112,7 @@
   };
 </script>
 
-  <title> test | Mxdneu </title>
+  <title> ES6学习笔记1 | Mxdneu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -242,7 +242,7 @@
             
             
               
-                test
+                ES6学习笔记1
               
             
           </h1>
@@ -254,8 +254,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-24T20:41:23+08:00" content="2016-05-24">
-              2016-05-24
+            <time itemprop="dateCreated" datetime="2018-01-29T23:23:35+08:00" content="2018-01-29">
+              2018-01-29
             </time>
           </span>
 
@@ -268,8 +268,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/日志/" itemprop="url" rel="index">
-                    <span itemprop="name">日志</span>
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
                   </a>
                 </span>
 
@@ -301,7 +301,83 @@
       
 
       
-        <p>test</p>
+        <h1 id="ES6学习笔记"><a href="#ES6学习笔记" class="headerlink" title="ES6学习笔记"></a>ES6学习笔记</h1><h2 id="函数的作用域"><a href="#函数的作用域" class="headerlink" title="函数的作用域"></a>函数的作用域</h2><p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。</p>
+<pre><code>var x = 1;
+
+function f(x, y = x) {
+      console.log(y);
+}
+
+f(2) // 2
+</code></pre><p>上面代码中，参数y的默认值等于变量x。调用函数f时，参数形成一个单独的作用域。在这个作用域里面，默认值变量x指向第一个参数x，而不是全局变量x，所以输出是2。<br><a id="more"></a><br>再看下面的例子。</p>
+<pre><code>let x = 1;
+
+function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // 1
+</code></pre><p>上面代码中，函数f调用时，参数y = x形成一个单独的作用域。这个作用域里面，变量x本身没有定义，所以指向外层的全局变量x。函数调用时，函数体内部的局部变量x影响不到默认值变量x。</p>
+<p>如果此时，全局变量x不存在，就会报错。</p>
+<pre><code>function f(y = x) {
+  let x = 2;
+  console.log(y);
+}
+
+f() // ReferenceError: x is not defined
+</code></pre><p>下面这样写，也会报错。</p>
+<pre><code>var x = 1;
+
+function foo(x = x) {
+  // ...
+}
+
+foo() // ReferenceError: x is not defined
+</code></pre><p>上面代码中，参数x = x形成一个单独作用域。实际执行的是let x = x，由于暂时性死区的原因，这行代码会报错”x 未定义“。</p>
+<p>如果参数的默认值是一个函数，该函数的作用域也遵守这个规则。请看下面的例子</p>
+<pre><code>let foo = &apos;outer&apos;;
+
+function bar(func = () =&gt; foo) {
+  let foo = &apos;inner&apos;;
+  console.log(func());
+}
+
+bar(); // outer
+</code></pre><p>上面代码中，函数bar的参数func的默认值是一个匿名函数，返回值为变量foo。函数参数形成的单独作用域里面，并没有定义变量foo，所以foo指向外层的全局变量foo，因此输出outer。</p>
+<p>如果写成下面这样，就会报错。</p>
+<pre><code>function bar(func = () =&gt; foo) {
+  let foo = &apos;inner&apos;;
+  console.log(func());
+}
+
+bar() // ReferenceError: foo is not defined
+</code></pre><p>上面代码中，匿名函数里面的foo指向函数外层，但是函数外层并没有声明变量foo，所以就报错了。</p>
+<p>下面是一个更复杂的例子。</p>
+<pre><code>var x = 1;
+function foo(x, y = function() { x = 2; }) {
+  var x = 3;
+  y();
+  console.log(x);
+}
+
+foo() // 3
+x // 1
+</code></pre><p>上面代码中，函数foo的参数形成一个单独作用域。这个作用域里面，首先声明了变量x，然后声明了变量y，y的默认值是一个匿名函数。这个匿名函数内部的变量x，指向同一个作用域的第一个参数x。函数foo内部又声明了一个内部变量x，该变量与第一个参数x由于不是同一个作用域，所以不是同一个变量，因此执行y后，内部变量x和外部全局变量x的值都没变。</p>
+<p>如果将var x = 3的var去除，函数foo的内部变量x就指向第一个参数x，与匿名函数内部的x是一致的，所以最后输出的就是2，而外层的全局变量x依然不受影响。</p>
+<pre><code>var x = 1;
+function foo(x, y = function() { x = 2; }) {
+  x = 3;
+  y();
+  console.log(x);
+}
+
+foo() // 2
+x // 1
+</code></pre><h2 id="箭头函数使用注意"><a href="#箭头函数使用注意" class="headerlink" title="箭头函数使用注意"></a>箭头函数使用注意</h2><p>1.函数体内的this对象，就是定义时所在的对象，而不是使用时所在的对象。</p>
+<p>2.不可以当作构造函数，也就是说，不可以使用new命令，否则会抛出一个错误。</p>
+<p>3.不可以使用arguments对象，该对象在函数体内不存在。如果要用，可以用 rest 参数代替。</p>
+<p>4.不可以使用yield命令，因此箭头函数不能用作 Generator 函数。·</p>
 
       
     </div>
@@ -326,17 +402,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/05/19/firstar/" rel="next" title="新的开始">
-                <i class="fa fa-chevron-left"></i> 新的开始
+              <a href="/2018/01/29/理解JS中的call-apply-bind方法/" rel="next" title="理解JS中的call,apply,bind方法">
+                <i class="fa fa-chevron-left"></i> 理解JS中的call,apply,bind方法
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/05/24/hexo-deploy/" rel="prev" title="hexo使用踩坑">
-                hexo使用踩坑 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -443,7 +515,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ES6学习笔记"><span class="nav-number">1.</span> <span class="nav-text">ES6学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#函数的作用域"><span class="nav-number">1.1.</span> <span class="nav-text">函数的作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数使用注意"><span class="nav-number">1.2.</span> <span class="nav-text">箭头函数使用注意</span></a></li></ol></li></ol></div>
             
           </div>
         </section>

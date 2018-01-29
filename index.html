@@ -241,6 +241,249 @@
             
               
                 
+                <a class="post-title-link" href="/2018/01/29/ES6学习笔记1/" itemprop="url">
+                  ES6学习笔记1
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-29T23:23:35+08:00" content="2018-01-29">
+              2018-01-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="ES6学习笔记"><a href="#ES6学习笔记" class="headerlink" title="ES6学习笔记"></a>ES6学习笔记</h1><h2 id="函数的作用域"><a href="#函数的作用域" class="headerlink" title="函数的作用域"></a>函数的作用域</h2><p>一旦设置了参数的默认值，函数进行声明初始化时，参数会形成一个单独的作用域（context）。等到初始化结束，这个作用域就会消失。这种语法行为，在不设置参数默认值时，是不会出现的。</p>
+<pre><code>var x = 1;
+
+function f(x, y = x) {
+      console.log(y);
+}
+
+f(2) // 2
+</code></pre><p>上面代码中，参数y的默认值等于变量x。调用函数f时，参数形成一个单独的作用域。在这个作用域里面，默认值变量x指向第一个参数x，而不是全局变量x，所以输出是2。<br></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/01/29/ES6学习笔记1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/01/29/理解JS中的call-apply-bind方法/" itemprop="url">
+                  理解JS中的call,apply,bind方法
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2018-01-29T23:17:26+08:00" content="2018-01-29">
+              2018-01-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">Javascript</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="理解JS中的call、apply、bind方法"><a href="#理解JS中的call、apply、bind方法" class="headerlink" title="理解JS中的call、apply、bind方法"></a>理解JS中的call、apply、bind方法</h1><p>在JavaScript中，call、apply和bind是function对象自带的方法，这三个方法主要作用是改变函数中的this指向。</p>
+<p>call、apply、bind方法的共同点和区别:</p>
+<p>(1)三者都是用来改变函数的this对象的指向;</p>
+<p>(2)三者第一参数都是this要指向的对象;</p>
+<p>(3)三者都可以利用后续参数传参;</p>
+<p>bind是返回对应函数，便于稍后调用;apply、call则是立刻调用。<br></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2018/01/29/理解JS中的call-apply-bind方法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2017/11/27/input中的file属性/" itemprop="url">
                   input中的file属性
                 </a>
@@ -1158,245 +1401,6 @@ window.onload = function () {
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/25/爬虫学习/" itemprop="url">
-                  爬虫学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T20:57:17+08:00" content="2016-05-25">
-              2016-05-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Nodejs/" itemprop="url" rel="index">
-                    <span itemprop="name">Nodejs</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="爬虫学习"><a href="#爬虫学习" class="headerlink" title="爬虫学习"></a>爬虫学习</h1><h2 id="爬虫系统及robots协议介绍"><a href="#爬虫系统及robots协议介绍" class="headerlink" title="爬虫系统及robots协议介绍"></a>爬虫系统及robots协议介绍</h2><p><em>爬虫</em>，是一种自动获取网页内容的程序。搜索引擎的重要组成部分，因此搜索引擎优化很大程度上就是针对爬虫做出优化。<br><em>robots.txt</em>是一个文本文件，robots.txt是一个协议，不是一个命令。robots.txt是爬虫要看的第一个文件。robots.txt文件告诉爬虫在服务器上什么文件是可以被查看的，搜索机器人就是会按照文件中的内容来确定访问范围。<br>爬虫得到的是html，转换成dom树。</p>
-<h2 id="开发环境"><a href="#开发环境" class="headerlink" title="开发环境"></a>开发环境</h2><ul>
-<li>Express    //server模块<br>  Express的安装<br>  在git bash中输入<code>npm install -g express-generator</code></li>
-<li>Requst    //ajax方法。后端</li>
-<li>Cheerio //可以操作从服务端拉去回的数据</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/05/25/javascript中的this/" itemprop="url">
-                  javascript中的this
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-05-25T00:44:43+08:00" content="2016-05-25">
-              2016-05-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">Javascript</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h1 id="详解JavaScript中的this"><a href="#详解JavaScript中的this" class="headerlink" title="详解JavaScript中的this"></a>详解JavaScript中的this</h1><p>JavaScript中的this总是让人迷惑，应该是js众所周知的坑之一。 个人也觉得js中的this不是一个好的设计，由于this晚绑定的特性，它可以是全局对象，当前对象，或者…有人甚至因为坑大而不用this。<br>其实如果完全掌握了this的工作原理，自然就不会走进这些坑。来看下以下这些情况中的this分别会指向什么：</p>
-<h2 id="1-全局代码中的this"><a href="#1-全局代码中的this" class="headerlink" title="1.全局代码中的this"></a>1.全局代码中的this</h2><p><code>alert(this)//window</code></p>
-<h2 id="2-作为单纯的函数调用"><a href="#2-作为单纯的函数调用" class="headerlink" title="2.作为单纯的函数调用"></a>2.作为单纯的函数调用</h2><p><code>function fooCoder(x) {
-    this.x = x;
-}
-fooCoder(2);
-alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即window。在严格模式中，则是undefined。<br></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/05/25/javascript中的this/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1442,7 +1446,7 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">15</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1489,7 +1493,7 @@ alert(x);// 全局变量x值为2</code><br>这里this指向了全局对象，即
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
